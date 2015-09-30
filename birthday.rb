@@ -4,14 +4,14 @@ birth_hash = {}
 File.open filename do |f| 
 	f.each_line do |entry|
 		date = entry[-13..-1]
-		puts name = entry[0..-16].downcase
+		puts name = entry[0..-16]
 		birth_hash[name] = date
 	end
 end
 
 puts 
 puts "Who's birthday would you like to look up?"
-name = gets.chomp.downcase
+name = gets.chomp.capitalize
 puts
 
 date = birth_hash[name]
