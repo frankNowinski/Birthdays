@@ -1,18 +1,23 @@
-#
-#  This is a simple Ruby program that allows the user to find out a persons
+#  Birthdays allows the user to find out a persons
 #  upcoming birthday by searching through an external file.
 #
 #  This program returns how many days until a persons birthay, 
 #  their date of birth, and how old they will turn.
 #
-
 filename = 'birthdays.txt'
 birth_hash = {}
 
 File.open filename do |f| 
-  f.each_line do |entry|
-    date = entry[-13..-1]
-    puts name = entry[0..-16]
+  f.each_line do |line|
+    line = line.chomp
+    comma = 0
+    
+    while line[comma] != ',' && comma < line.length
+      comma += 1
+    end
+  	
+    puts name = line[0..comma-1]
+    date = line[-13..-1]
     birth_hash[name] = date
   end
 end
@@ -26,7 +31,7 @@ date = birth_hash[name]
 year = date[-5..-1].to_i
 day = date[-9,3].to_i
 
-month_string = date[-13, 3]
+month_string = date[-12, 3]
 
 if month_string == 'Jan'
   month = 1
