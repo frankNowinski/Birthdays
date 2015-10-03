@@ -73,13 +73,11 @@ if birthday < today
   age = (next_birthday - birthdate) / (60*60*24*365)
   days_away = (next_birthday  - today ) / (60*60*24)
 
-  puts "#{name.capitalize}'s next birthday is #{days_away.ceil} days away on #{month_string} #{day}."
-  puts "#{name.capitalize} will be #{age.floor} years old!"
+  puts "#{name.capitalize} will turn #{age.floor} in #{days_away.ceil} days on #{month_string} #{day}."
 else
   age = (birthday - birthdate) / (60*60*24*365)
   days_away = (birthday  - today ) / (60*60*24)
 	
-  puts "#{name.capitalize}'s next birthday is #{days_away.ceil} day#{days_away > 1 ? 's' : ''} away on #{month_string} #{day}."
-  puts "#{name.capitalize} will be #{age.floor} years old!"
+  puts "#{name.capitalize} will turn #{age.floor} in #{days_away.ceil} day#{days_away > 1 ? 's' : ''} on #{month_string} #{day}."
 end
 
