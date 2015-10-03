@@ -3,7 +3,7 @@
 #
 #  This program returns how many days until a persons birthay, 
 #  their date of birth, and how old they will turn.
-#
+
 filename = 'birthdays.txt'
 birth_hash = {}
 
@@ -16,7 +16,7 @@ File.open filename do |f|
       comma += 1
     end
   	
-    puts name = line[0..comma-1]
+    puts name = line[0..comma-1] # List names for user to pick from 
     date = line[-13..-1]
     birth_hash[name] = date
   end
@@ -28,6 +28,8 @@ name = gets.chomp.capitalize
 puts
 
 date = birth_hash[name]
+puts "Unable to find that persons birthday..." if date.nil?
+
 year = date[-5..-1].to_i
 day = date[-9,3].to_i
 
@@ -69,23 +71,15 @@ birthday = Time.mktime(current_year, month, day)
 if birthday < today
   next_birthday = Time.mktime(next_year, month, day)
   age = (next_birthday - birthdate) / (60*60*24*365)
-  age = age.floor
   days_away = (next_birthday  - today ) / (60*60*24)
-  days_away = days_away.ceil
 
-  puts "#{name.capitalize}'s next birthday is #{days_away} days away on #{month_string} #{day}."
-  puts "#{name.capitalize} will be #{age} years old!"
+  puts "#{name.capitalize}'s next birthday is #{days_away.ceil} days away on #{month_string} #{day}."
+  puts "#{name.capitalize} will be #{age.floor} years old!"
 else
   age = (birthday - birthdate) / (60*60*24*365)
-  age = age.floor
   days_away = (birthday  - today ) / (60*60*24)
-  days_away = days_away.ceil
 	
-  if days_away != 1
-    puts "#{name.capitalize}'s next birthday is #{days_away} days away on #{month_string} #{day}."
-  else
-    puts "#{name.capitalize}'s next birthday is #{days_away} day away on #{month_string} #{day}."	
-  end
-  puts "#{name.capitalize} will be #{age} years old!"
+  puts "#{name.capitalize}'s next birthday is #{days_away.ceil} day#{days_away > 1 ? 's' : ''} away on #{month_string} #{day}."
+  puts "#{name.capitalize} will be #{age.floor} years old!"
 end
 
